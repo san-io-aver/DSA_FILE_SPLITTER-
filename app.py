@@ -1363,7 +1363,7 @@ def create_docx(programs_list, font_name, font_size, font_color_hex):
         run = heading_paragraph.runs[0]
         run.font.name = 'Calibri' 
         run.font.color.rgb = RGBColor(0, 0, 0) 
-
+        doc.add_paragraph()
         
         lines = code.split("\n")
         mid = (len(lines) + 1) // 2
@@ -1388,7 +1388,8 @@ def create_docx(programs_list, font_name, font_size, font_color_hex):
         run2.font.name = font_name
         run2.font.size = Pt(font_size)
         run2.font.color.rgb = font_color
-
+        
+        doc.add_paragraph()
         doc.add_paragraph("Output:")
         doc.add_paragraph() 
 
