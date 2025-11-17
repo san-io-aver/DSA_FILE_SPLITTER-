@@ -1419,7 +1419,13 @@ def update_form_with_selection():
     else:
         st.session_state.current_title = ""
         st.session_state.current_code = ""
-
+def clear_all_programs():
+    st.session_state.programs = []
+    st.session_state.current_title = ""
+    st.session_state.current_code = ""
+    st.session_state.preloader_select = "-- Select a pre-loaded program --"
+    st.rerun()
+    
 def add_program_and_clear():
     if st.session_state.current_title and st.session_state.current_code:
         st.session_state.programs.append({
@@ -1493,12 +1499,11 @@ if st.session_state.programs:
     except Exception as e:
         st.error(f"Failed to generate DOCX file: {e}")
 
-    if st.button("Clear All Programs", type="secondary"):
-        st.session_state.programs = []
-        st.session_state.current_title = ""
-        st.session_state.current_code = ""
-        st.session_state.preloader_select = "-- Select a pre-loaded program --"
-        st.rerun()
+    st.button(
+        "Clear All Programs", 
+        type="secondary",
+        on_click=clear_all_programs
+    )
 
 else:
     st.info("Add a program using the form above or select a pre-loaded one to get started.")
